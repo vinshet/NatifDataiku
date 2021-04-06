@@ -1,0 +1,49 @@
+{
+    "meta": {
+        "label": "Todataset",
+        "description": "Follow the different jobs and outputs from the Deep-OCR and Intelligent capturing",
+        "icon": "icon-table"
+    },
+
+    "kind": "PYTHON",
+
+
+    "inputRoles": [
+        {
+            "name": "Processed_files",
+            "label": "Processed_files",
+            "description": "Folder with the processed files",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": false,
+            "acceptsManagedFolder":true
+        }
+    ],
+
+    "outputRoles": [
+        {
+            "name": "Collated_dataset",
+            "label": "Collated dataset",
+            "description": "Dataset with combined results for all uploaded files",
+            "arity": "UNARY",
+            "required": false,
+            "acceptsDataset": true,
+            "acceptsManagedFolder":false
+        }
+    ],
+
+    "params": [
+        
+        {
+            "name":"delete_dataset",
+            "mandatory":true,
+            "label":"Delete existing dataset?",
+            "type": "BOOLEAN",
+            "defaultValue":true,
+            "description":"Clears the existing dataset at the output of this recipe"
+          }
+        
+        ],
+    "resourceKeys": []
+
+}

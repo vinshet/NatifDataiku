@@ -1,0 +1,47 @@
+{
+    "meta": {
+        "label": "Document processing",
+        "description": "Processes the input documents based on their placement in the folder structure.",
+        "icon": "icon-tasks"
+    },
+
+    "kind": "PYTHON",
+    
+
+    "inputRoles": [
+        {
+            "name": "File_upload",
+            "label": "Uploaded Files",
+            "description": "what input A means",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": false,
+            "acceptsManagedFolder":true
+        }
+    ],
+
+    "outputRoles": [
+        {
+            "name": "Processed_files",
+            "label": "Processed files",
+            "description": "what main output means",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": false,
+            "acceptsManagedFolder":true
+        }
+    ],
+    "params": [
+        {
+          "type": "PRESET",
+          "name": "natif_cred",
+          "label": "NATIF credentials",
+          "parameterSetId": "credentials",
+          "description":"Create a preset in the plugin settings and provide credentials at http://localhost:11200/profile/credentials/"
+        }
+        ]
+    
+
+
+
+}

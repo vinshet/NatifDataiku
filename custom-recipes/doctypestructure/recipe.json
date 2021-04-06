@@ -1,0 +1,76 @@
+{
+    "meta": {
+        "label": "Document folder Structure",
+        "description": "Select the different extraction jobs you need (Deep-OCR – Intelligent capturing) and also choose the different types of documents you want to process. ",
+        "icon": "icon-folder-close"
+    },
+
+    "kind": "PYTHON",
+
+
+    "outputRoles": [
+        {
+            "name": "Output",
+            "label": "Output",
+            "description": "Folder stucture for storing the documents",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": false,
+            "acceptsManagedFolder": true
+        }
+    ],
+    
+    "params": [
+        
+        {
+            "name":"fold_clear",
+            "mandatory":true,
+            "label":"Clear existing folder structure?",
+            "type": "BOOLEAN",
+            "defaultValue":true,
+            "description":"Clears the output folder and creates a new folder structure based on the choices below"
+        },
+        {
+            "name": "DeepOCR",
+            "mandatory": true,
+            "label": "Deep-OCR",
+            "type": "BOOLEAN",
+            "defaultValue": true,
+            "description":"Extract text out of images into a Json"
+        },
+        {
+            "name": "Extractions",
+            "mandatory": true,
+            "label": "Intelligent capturing",
+            "type": "BOOLEAN",
+            "defaultValue": false,
+            "description":"Intelligent extraction of text with their attributes out of images into a Json"
+        },
+        {
+            "name": "Invoices",
+            "label": "Invoice (Extractions)",
+            "type": "BOOLEAN",
+            "defaultValue": false,
+            "visibilityCondition" : "model.Extractions",
+            "description":"Any invoice written with latin alphabet. Using capturing, +58 Data points (+ line items) will be extracted with their attributes"
+        },
+        {
+            "name": "Order_confirmation",
+            "label": "Order confirmation (Extractions)",
+            "type": "BOOLEAN",
+            "defaultValue": false,
+            "visibilityCondition" : "model.Extractions",
+            "description" : "Any order confirmation written with latin alphabet. Using capturing, +58 Data points (+ line items) will be extracted with their attribute"
+        },
+        {
+            "name": "Delivery_note",
+            "label": "Delivery note (Extractions)",
+            "type": "BOOLEAN",
+            "defaultValue": false,
+            "visibilityCondition" : "model.Extractions",
+            "description":"Any delivery notes written with latin alphabet. Using capturing, +40 Data points (+line items) will be extracted with their attributes"
+        }
+        ]
+    
+
+}

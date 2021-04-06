@@ -1,0 +1,32 @@
+// This file is the descriptor for webapp natif-adminconsole
+{
+    "meta": {
+        // label: name of the webapp as displayed, should be short
+        "label": "Natif interface",
+        // description: longer string to help end users understand what this webapp does
+        "description": "",
+        // icon: must be one of the FontAwesome 3.2.1 icons, complete list here at https://fontawesome.com/v3.2.1/icons/
+        "icon": "icon-puzzle-piece"
+    },
+
+    "baseType": "STANDARD", // WARNING: do not change
+    "hasBackend": "true",
+    "noJSSecurity": "false",
+    "standardWebAppLibraries": ["jquery","dataiku"],
+    "kind": "PYTHON",
+    "params": [
+        {
+            "name": "output_managed_folder",
+            "label": "Output folder for results",
+            "type": "MANAGED_FOLDER",
+            "description": "Where do you want to save the updated documents?"
+        },
+        {
+          "type": "PRESET",
+          "name": "natif_cred_web",
+          "label": "NATIF credentials",
+          "parameterSetId": "credentials"
+        }
+]
+        
+}
