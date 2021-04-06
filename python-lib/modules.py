@@ -1,14 +1,14 @@
 import requests
-import json
-from dataiku.customrecipe import *
+import os
+
+
 # Retreives the bearer token from the login credentials
-def retreive_bearer_token(endpoint,usr,pwd):
+def retreive_bearer_token(endpoint, usr, pwd):
     headers = {
         "accept": "application/json",
         "Content-Type": "application/x-www-form-urlencoded",
     }
     data = {"grant_type": "", "username": usr, "password": pwd}
-
     response = requests.post(endpoint + "/token", headers=headers, data=data)
     if response.status_code >= 400:
         return ""
@@ -18,8 +18,10 @@ def retreive_bearer_token(endpoint,usr,pwd):
     bearer = "Bearer " + bearer_token
     return bearer
 
-# Creates a folder (Uploaded folder) cointaining all the unprocessed input files for Deep-OCR/Extractions
-def create_uploaded_folder(input_handle,output_handle):
+
+# Creates a folder (Uploaded folder)
+# containing all the unprocessed input files for Deep-OCR/Extractions
+def create_uploaded_folder(input_handle, output_handle):
     input_folder_paths = input_handle.list_paths_in_partition()
     output_folder_paths = output_handle.list_paths_in_partition()
     for path in input_folder_paths:
@@ -34,4 +36,3 @@ def create_uploaded_folder(input_handle,output_handle):
             if upload_output_folder not in output_folder_paths:
                 with output_handle.get_writer("/Uploaded_files" + path) as w:
                     w.write(data)
-

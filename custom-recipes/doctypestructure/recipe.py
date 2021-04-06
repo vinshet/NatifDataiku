@@ -1,14 +1,15 @@
 # import the classes for accessing DSS objects from the recipe
 import dataiku
-import time
+
 # Import the helpers for custom recipes
-from dataiku.customrecipe import get_recipe_config,get_output_names_for_role
-from dataiku import pandasutils as pdu
+from dataiku.customrecipe import get_recipe_config, get_output_names_for_role
 import os
 import logging
 import shutil
 
 logger = logging.getLogger(__name__)
+
+
 # Clears the output folder
 def clear_output_folder():
     list_dir = os.listdir(path_to_folder)
@@ -52,19 +53,16 @@ path_to_folder = folder_structure.get_path()
 if clr_fld:
     clear_output_folder()
 
-try:
-    # Folder creation for Extractions
-    if extractions:
-        # Sub-folder creation for Extractions
-        if invoice:
-            create_default_files("Extractions", "Invoice")
-        if order_confirmation:
-            create_default_files("Extractions", "Order_confirmation")
-        if delivery_note:
-            create_default_files("Extractions", "Delivery_note")
+# Folder creation for Extractions
+if extractions:
+    # Sub-folder creation for Extractions
+    if invoice:
+        create_default_files("Extractions", "Invoice")
+    if order_confirmation:
+        create_default_files("Extractions", "Order_confirmation")
+    if delivery_note:
+        create_default_files("Extractions", "Delivery_note")
 
-    # Folder creation for Deep-OCR
-    if ocr:
-        create_default_files("Deep-OCR", "other")
-except:
-    raise Exception("Error creating folder structure. Error details")
+# Folder creation for Deep-OCR
+if ocr:
+    create_default_files("Deep-OCR", "other")

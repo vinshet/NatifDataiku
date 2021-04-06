@@ -1,12 +1,9 @@
-# import the classes for accessing DSS objects from the recipe
-import dataiku
-
 # Import the helpers for custom recipes
-from dataiku.customrecipe import *
-from modules import retreive_bearer_token,create_uploaded_folder
+from dataiku.customrecipe import get_input_names_for_role, get_recipe_config, get_output_names_for_role
+from modules import retreive_bearer_token, create_uploaded_folder
+
 # -*- coding: utf-8 -*-
 import dataiku
-from dataiku import pandasutils as pdu
 import requests
 import json
 import base64
@@ -16,7 +13,7 @@ import logging
 
 
 def write_to_log(messages, proc_type, doc_type, log_type):
-    global output_folder_paths 
+    global output_folder_paths
     document_type = ""
     existing_messages = ""
     if proc_type == "Deep-OCR" and doc_type == "other":
@@ -227,7 +224,6 @@ def get_processed_doc(file_info, proc_type, file_type):
         )
 
 
-
 # Read recipe inputs
 input_folder = get_input_names_for_role("File_upload")
 output_folder = get_output_names_for_role("Processed_files")
@@ -242,7 +238,7 @@ pwd = cred["login_credentials"]["password"]
 endpoint = "https://apiv3.natif.ai"
 error_message = ""
 # Bearer token for authentication
-bearer = retreive_bearer_token(endpoint,usr,pwd)
+bearer = retreive_bearer_token(endpoint, usr, pwd)
 if len(bearer) == 0:
     logger.error("Credentials error")
     raise ValueError(
@@ -254,7 +250,7 @@ else:
         "accept": "application/json",
         "Authorization": bearer,
     }
-    create_uploaded_folder(input_handle,output_handle)
+    create_uploaded_folder(input_handle, output_handle)
     output_folder_paths = output_handle.list_paths_in_partition()
     file_info = dict()
     doc_type = ""
@@ -285,4 +281,10 @@ else:
             file_info["file_upload"] = file_path
             get_processed_doc(file_info, path_list[1], doc_type)
         else:
-            write_to_log("Error uploading file: {}".format(str(file_path)),path_list[1],doc_type,"error",output_handle)
+            write_to_log(
+                "Error uploading file: {}".format(str(file_path)),
+                path_list[1],
+                doc_type,
+                "error",
+                output_handle,
+            )
