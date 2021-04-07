@@ -40,6 +40,7 @@ def write_to_log(messages, proc_type, doc_type, log_type):
             + "_log.txt"
         ) as f:
             existing_messages = f.read()
+            existing_messages=existing_messages.decode()
     if (
         existing_messages == "No errors recorded"
         or existing_messages == "No documents processed"
@@ -48,7 +49,7 @@ def write_to_log(messages, proc_type, doc_type, log_type):
     with output_handle.get_writer(
         "/Processed_files/" + proc_type + "/" + document_type + log_type + "_log.txt"
     ) as w:
-        w.write(str(existing_messages) + "\n" + messages)
+        w.write((str(existing_messages) + "\n" + messages).encode())
     output_folder_paths = output_handle.list_paths_in_partition()
 
 
@@ -202,9 +203,9 @@ def get_processed_doc(file_info, proc_type, file_type):
             write_to_file_folder(
                 file_name,
                 proc_type,
-                ocr_data,
-                extractions_data,
-                json.dumps(upload_details.json()),
+                ocr_data.encode(),
+                extractions_data.encode(),
+                json.dumps(upload_details.json()).encode(),
                 processed_doc,
                 file_type,
             )

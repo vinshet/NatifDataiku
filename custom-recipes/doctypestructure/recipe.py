@@ -33,9 +33,9 @@ def create_default_files(proc_type, doc_type):
     else:
         writer = "/Extractions/{}/".format(doc_type)
     with folder_structure.get_writer(writer + "error_log.txt") as w:
-        w.write("No errors recorded")
+        w.write("No errors recorded".encode())
     with folder_structure.get_writer(writer + "info_log.txt") as w:
-        w.write("No documents processed")
+        w.write("No documents processed".encode())
 
 
 # For outputs, the process is the same:

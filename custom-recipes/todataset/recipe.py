@@ -19,8 +19,8 @@ for path in input_paths:
     if path.split("/")[1] == "Processed_files":
         if os.path.basename(path) in ("ocr_data.json", "extractions_data.json"):
             with input_handle.get_download_stream(path) as f:
-                t = str(f.read())
-                data.append(t)
+                t = f.read()
+                data.append(t.decode())
                 if os.path.basename(path) == "ocr_data.json":
                     process_type.append("Deep-OCR")
                     file_names.append(os.path.basename(os.path.dirname(path)))
