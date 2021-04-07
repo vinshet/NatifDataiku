@@ -6,7 +6,7 @@
         "description": "Plugin to leverage the Deep-OCR and intelligent capturing by natif.ai",
         "author": "natif.ai",
         "icon": "icon-file-text-alt",
-        "tags": ["Machine Learning","NLP","Document processing","OCR","Extractions","IDP","Data extraction","Data capturing","Invoice capturing","Invoice processing","Invoice extraction","ConvNet","Unstructured data processing"], //for example: ["Machine Learning", "NLP"]
+        "tags": ["Machine Learning","NLP","Document processing","OCR","Extractions","IDP","Data extraction","Data capturing","Invoice capturing","Invoice processing","Invoice extraction","ConvNet","Unstructured data processing"],
         "url": "",
         "licenseInfo": "Apache Software License"
     }
