@@ -5,6 +5,6 @@
         "PYTHON38"
     ],
     "forceConda": false,
-    "installCorePackages": true,
+    "installCorePackages": false,
     "installJupyterSupport": false
 }
